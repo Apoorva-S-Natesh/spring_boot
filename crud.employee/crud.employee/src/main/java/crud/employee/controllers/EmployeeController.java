@@ -77,4 +77,15 @@ public class EmployeeController {
 		m.addAttribute("employees", employeeList);
 		return "show_all_employees";
 	}
+	
+	@PostMapping("/login")
+	public String login(@RequestParam int webId, @RequestParam String webName) {
+		Employee emp=service.searchEmployee(webId);
+		if ((emp.getId() == webId) && emp.getName().equals(webName)) {
+			return "login_success";
+		}
+		else
+			return "login_fail";
+	}
+	
 }
