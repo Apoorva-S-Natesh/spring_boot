@@ -1,5 +1,7 @@
 package com.authLogin.service;
 
-public interface MailService {
+import com.authLogin.entity.Mail;
 
+public interface MailService {
+ void sendMail(Mail mail);
 }

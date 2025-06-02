@@ -15,7 +15,8 @@ public class MailController {
 	
 	@PostMapping("/send")
 	public String send(@ModelAttribute Mail mail) {
-		System.out.println("mail");
+		System.out.println("Sending mail to: " + mail.getReceiver());
+		service.sendMail(mail);
 		return "index";
 	}
 }
