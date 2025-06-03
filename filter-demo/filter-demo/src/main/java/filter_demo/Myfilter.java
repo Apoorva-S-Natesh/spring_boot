@@ -16,9 +16,10 @@ public class Myfilter implements Filter{
 			throws IOException, ServletException {
   
 		HttpServletRequest httpReq = (HttpServletRequest)request;
-		System.out.println("Request is passing the filter");
+		System.out.println("Request is passing the filter1");
 		System.out.println("URL requested: " + httpReq.getRequestURI());
+		System.out.println("Before the chain.doFilter of 1");
 		chain.doFilter(request, response);
-		System.out.println("After the chain.doFilter");
+		System.out.println("After the chain.doFilter of 1");
 	}
 }

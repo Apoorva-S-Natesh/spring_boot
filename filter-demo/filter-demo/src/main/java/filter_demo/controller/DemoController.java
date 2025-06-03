@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 	@GetMapping("/hello")
 	public String hello() {
-		System.out.println("Inside the controller");
+		System.out.println("controller Executing");
 		return "HELLO";
 	}
 	
 	@GetMapping("/hi")
 	public String hi() {
-		System.out.println("Inside the controller");
+		System.out.println("Controller Executing");
 		return "HI";
 	}
 }
