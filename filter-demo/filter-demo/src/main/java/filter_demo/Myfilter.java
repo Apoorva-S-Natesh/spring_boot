@@ -1,6 +1,8 @@
 package filter_demo;
 
 import java.io.IOException;
+
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import jakarta.servlet.Filter;
@@ -10,6 +12,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 
+@Order(3)
 @Component
 public class Myfilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
