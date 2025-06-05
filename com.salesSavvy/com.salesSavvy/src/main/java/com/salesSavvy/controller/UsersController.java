@@ -2,6 +2,7 @@ package com.salesSavvy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +16,10 @@ public class UsersController {
 	@Autowired
 	UsersService service;
 	
-	@PostMapping("/data")
-	public String data() {
-		return "data received";
+	@GetMapping("/data")
+	public String data(@RequestBody String username) {
+		System.out.println("received username: " +username);
+		return "msg from backend";
 	}
 	
 	@PostMapping("/signUp")
