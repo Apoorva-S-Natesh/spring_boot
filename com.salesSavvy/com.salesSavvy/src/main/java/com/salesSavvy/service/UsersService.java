@@ -4,5 +4,5 @@ import com.salesSavvy.entity.Users;
 
 public interface UsersService {
 	void signUp(Users user);
-	Users UsernameExists(String username);
+	Users getUser(String username);
 }

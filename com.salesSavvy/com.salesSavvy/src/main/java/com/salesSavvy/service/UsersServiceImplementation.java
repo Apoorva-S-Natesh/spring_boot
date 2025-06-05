@@ -19,8 +19,7 @@ public class UsersServiceImplementation
 	}
 
 	@Override
-	public Users UsernameExists(String username) {
-		// TODO Auto-generated method stub
+	public Users getUser(String username) {
 		return repo.findByUsername(username);
 	}
 }
