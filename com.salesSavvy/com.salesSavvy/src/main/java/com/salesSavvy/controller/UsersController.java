@@ -2,11 +2,11 @@ package com.salesSavvy.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.salesSavvy.entity.UserLoginData;
 import com.salesSavvy.entity.Users;
 import com.salesSavvy.service.UsersService;
 
@@ -15,13 +15,7 @@ import com.salesSavvy.service.UsersService;
 public class UsersController {
 	@Autowired
 	UsersService service;
-	
-	@GetMapping("/data")
-	public String data(@RequestBody String username) {
-		System.out.println("received username: " +username);
-		return "msg from backend";
-	}
-	
+
 	@PostMapping("/signUp")
 	public String signUp(@RequestBody Users user) {
 		String msg="";
@@ -33,6 +27,22 @@ public class UsersController {
 		}
 		else
 			msg = "Username already exists";
+		return msg;
+	}
+	
+	@PostMapping("/signIn")
+	public String signIn(@RequestBody UserLoginData user) {
+		String msg="";
+		String username = user.getUsername();
+		String password = user.getPassword();
+		Users u = service.getUser(username);
+		if(u == null) {
+			msg = "User does not exist!";
+		}
+		else
+		{
+			msg = service.validate(password);
+		}
 		return msg;
 	}
 }

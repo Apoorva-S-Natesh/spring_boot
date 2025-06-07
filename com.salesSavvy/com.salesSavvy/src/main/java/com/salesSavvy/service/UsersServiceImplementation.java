@@ -22,4 +22,10 @@ public class UsersServiceImplementation
 	public Users getUser(String username) {
 		return repo.findByUsername(username);
 	}
+
+	@Override
+	public String validate(String password) {
+		String dbPassword = 
+		return null;
+	}
 }
