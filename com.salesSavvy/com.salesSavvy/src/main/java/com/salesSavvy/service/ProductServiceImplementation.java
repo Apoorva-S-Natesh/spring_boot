@@ -1,5 +1,7 @@
 package com.salesSavvy.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,38 +15,45 @@ public class ProductServiceImplementation implements ProductService{
 
 	@Override
 	public String addProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		repo.save(product);
+		return "Product added succesfully";
 	}
 
 	@Override
-	public Product searchProduct(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Product searchProduct(long id) {
+		return repo.findById(id).get();
 	}
 
 	@Override
 	public Product searchProduct(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findByName(name);
 	}
 
 	@Override
 	public String updateProduct(Product product) {
-		// TODO Auto-generated method stub
-		return null;
+		repo.save(product);
+		return "Product updated successfully";
 	}
 
 	@Override
-	public String deleteProduct(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public String deleteProduct(long id) {
+		repo.deleteById(id);
+		return "product deleted successfully";
 	}
 
 	@Override
 	public String deleteProduct(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		repo.deleteByName(name);
+		return "Product deleted successfully";
 	}
 
+	@Override
+	public Product searchProductByCategory(String category) {
+		return repo.findByCategory(category);
+	}
+
+	@Override
+	public List<Product> getAllProducts() {
+		return repo.findAll();
+	}
 }
