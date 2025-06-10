@@ -24,8 +24,9 @@ public class UsersServiceImplementation
 	}
 
 	@Override
-	public String validate(String password) {
-		String dbPassword = 
-		return null;
+	public boolean validate(String username, String password) {
+		Users user = getUser(username);
+		String dbPassword = user.getPassword();
+		return (password.equals(dbPassword));
 	}
 }

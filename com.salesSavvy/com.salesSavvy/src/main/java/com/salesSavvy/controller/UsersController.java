@@ -41,7 +41,15 @@ public class UsersController {
 		}
 		else
 		{
-			msg = service.validate(password);
+			boolean status = service.validate(username, password);
+			if(status == true) {
+				if(u.getRole().equals("admin"))
+					msg = "admin";
+				else
+					msg = "customer";
+			}
+			else
+				msg = "wrong password";
 		}
 		return msg;
 	}
