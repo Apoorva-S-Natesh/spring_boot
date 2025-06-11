@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Product {
@@ -19,8 +19,7 @@ public class Product {
 	String photo;
 	String category;
 	List <String> reviews;
-	
-	@ManyToMany
+	@ManyToOne
 	Cart cart;
 	
 	public Product() {

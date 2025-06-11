@@ -17,10 +17,7 @@ public class Cart {
 	
 	@OneToOne
 	Users user;
-	
-	@OneToOne
-	Cart cart;
-	
+
 	@OneToMany
 	List<Product> productsList;
 
@@ -29,11 +26,10 @@ public class Cart {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cart(Long id, Users user, Cart cart, List<Product> productsList) {
+	public Cart(Long id, Users user, List<Product> productsList) {
 		super();
 		this.id = id;
 		this.user = user;
-		this.cart = cart;
 		this.productsList = productsList;
 	}
 
@@ -53,14 +49,6 @@ public class Cart {
 		this.user = user;
 	}
 
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
 	public List<Product> getProductsList() {
 		return productsList;
 	}
@@ -71,6 +59,6 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", user=" + user + ", cart=" + cart + ", productsList=" + productsList + "]";
+		return "Cart [id=" + id + ", user=" + user + ", productsList=" + productsList + "]";
 	}
 }
