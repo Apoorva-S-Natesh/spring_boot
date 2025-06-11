@@ -13,7 +13,7 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long id;
 	String name;
-	String Descritption;
+	String descritption;
 	int price;
 	String photo;
 	String category;
@@ -27,7 +27,7 @@ public class Product {
 		super();
 		this.id = id;
 		this.name = name;
-		Descritption = descritption;
+		this.descritption = descritption;
 		this.price = price;
 		this.photo = photo;
 		this.category = category;
@@ -46,10 +46,10 @@ public class Product {
 		this.name = name;
 	}
 	public String getDescritption() {
-		return Descritption;
+		return descritption;
 	}
 	public void setDescritption(String descritption) {
-		Descritption = descritption;
+		this.descritption = descritption;
 	}
 	public int getPrice() {
 		return price;
@@ -77,7 +77,7 @@ public class Product {
 	}
 	@Override
 	public String toString() {
-		return "product [id=" + id + ", name=" + name + ", Descritption=" + Descritption + ", price=" + price
+		return "product [id=" + id + ", name=" + name + ", descritption=" + descritption + ", price=" + price
 				+ ", photo=" + photo + ", category=" + category + ", reviews=" + reviews + "]";
 	}
 }
