@@ -4,7 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 
 // One product in user's cart
 @Entity
@@ -13,23 +15,25 @@ public class CartItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
-	private Users user;
-	
-	@ManyToOne
-	private Product product;
+	 @ManyToOne
+	    @JoinColumn(name = "cart_id")
+	    private Cart cart;
 
-	public CartItem() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	    @ManyToOne
+	    private Product product;
 
-	public CartItem(Long id, Users user, Product product) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.product = product;
-	}
+
+	    private int quantity;
+
+	    /* ignoring fields during Java object serialization, but it also prevents these fields from being persisted when using a JPA framework 
+	     * used to indicate that a particular field should not be persistently stored in the database */
+	    @Transient
+	    private String username;
+
+	    @Transient
+	    private Long productId;
+
+	public CartItem() {}
 
 	public Long getId() {
 		return id;
@@ -39,12 +43,12 @@ public class CartItem {
 		this.id = id;
 	}
 
-	public Users getUser() {
-		return user;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setUser(Users user) {
-		this.user = user;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
 	public Product getProduct() {
@@ -55,8 +59,27 @@ public class CartItem {
 		this.product = product;
 	}
 
-	@Override
-	public String toString() {
-		return "CartItem [id=" + id + ", user=" + user + ", product=" + product + "]";
-	}	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 }

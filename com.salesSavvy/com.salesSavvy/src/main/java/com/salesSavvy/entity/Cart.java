@@ -1,7 +1,9 @@
 package com.salesSavvy.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,52 +15,24 @@ import jakarta.persistence.OneToOne;
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	private Long id;
 	
 	@OneToOne
-	Users user;
+	private Users user;
 
-	@OneToMany
-	List<Product> productsList;
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItems = new ArrayList<>();
 
-	public Cart() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Cart() {}
+
+	public Long getId() {return id;}
+	public void setId(Long id) {this.id = id;}
+
+	public Users getUser() {return user;}
+	public void setUser(Users user) {this.user = user;}
+
+	public List<CartItem> getCartItems() {return cartItems;}
+	public void setCartItems(List<CartItem> cartItems) 
+	{this.cartItems = cartItems;}
+
 	}
-
-	public Cart(Long id, Users user, List<Product> productsList) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.productsList = productsList;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Users getUser() {
-		return user;
-	}
-
-	public void setUser(Users user) {
-		this.user = user;
-	}
-
-	public List<Product> getProductsList() {
-		return productsList;
-	}
-
-	public void setProductsList(List<Product> productsList) {
-		this.productsList = productsList;
-	}
-
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", user=" + user + ", productsList=" + productsList + "]";
-	}
-}
