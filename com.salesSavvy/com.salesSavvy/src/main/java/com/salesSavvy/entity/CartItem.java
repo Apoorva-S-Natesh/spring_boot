@@ -1,5 +1,8 @@
 package com.salesSavvy.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,17 +14,18 @@ import jakarta.persistence.Transient;
 // One product in user's cart
 @Entity
 public class CartItem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	 @ManyToOne
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
+		
+		@ManyToOne
 	    @JoinColumn(name = "cart_id")
+	    @JsonBackReference           // stops CartItem → Cart → CartItem loop
 	    private Cart cart;
-
+	
 	    @ManyToOne
+	    @JsonIgnoreProperties("cart") // in case old Product rows still have cart_id
 	    private Product product;
-
 
 	    private int quantity;
 
@@ -34,6 +38,20 @@ public class CartItem {
 	    private Long productId;
 
 	public CartItem() {}
+	
+	
+
+	public CartItem(Long id, Cart cart, Product product, int quantity, String username, Long productId) {
+		super();
+		this.id = id;
+		this.cart = cart;
+		this.product = product;
+		this.quantity = quantity;
+		this.username = username;
+		this.productId = productId;
+	}
+
+
 
 	public Long getId() {
 		return id;

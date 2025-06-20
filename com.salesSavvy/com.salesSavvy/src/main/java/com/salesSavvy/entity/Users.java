@@ -1,11 +1,12 @@
 package com.salesSavvy.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -20,9 +21,10 @@ public class Users {
 	String date;
 	String role;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id", unique = true)
-	private Cart cart;
+	 @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	    @JsonManagedReference        // serialise Users → Cart (inverse of @JsonBackReference)
+	    private Cart cart;
+
 	
 	public Users() {
 		super();

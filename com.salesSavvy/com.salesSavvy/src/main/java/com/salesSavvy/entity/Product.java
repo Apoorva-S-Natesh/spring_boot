@@ -6,21 +6,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long id;
+	
 	String name;
 	String description;
 	int price;
 	String photo;
 	String category;
 	List <String> reviews;
-	@ManyToOne
-	Cart cart;
 	
 	public Product() {
 		super();
@@ -37,7 +35,6 @@ public class Product {
 		this.photo = photo;
 		this.category = category;
 		this.reviews = reviews;
-		this.cart = cart;
 	}
 
 	public Long getId() {
@@ -96,17 +93,9 @@ public class Product {
 		this.reviews = reviews;
 	}
 
-	public Cart getCart() {
-		return cart;
-	}
-
-	public void setCart(Cart cart) {
-		this.cart = cart;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", photo="
-				+ photo + ", category=" + category + ", reviews=" + reviews + ", cart=" + cart + "]";
+				+ photo + ", category=" + category + ", reviews=" + reviews + "]";
 	}
 }
