@@ -29,4 +29,10 @@ public class UsersServiceImplementation
 		String dbPassword = user.getPassword();
 		return (password.equals(dbPassword));
 	}
+
+	@Override
+	public void updateUser(Users user) {
+		// TODO Auto-generated method stub
+		
+	}
 }
